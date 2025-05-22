@@ -1,3 +1,4 @@
+
 "use client";
 
 import type { User as FirebaseUser } from "firebase/auth";
@@ -14,7 +15,7 @@ import {
 import type { 
   SignUpWithEmailCredentials, 
   SignInWithEmailCredentials 
-} from "@/lib/firebase/auth"; // Will create this type definition file
+} from "@/lib/firebase/auth"; 
 
 interface AuthContextType {
   user: FirebaseUser | null;
@@ -45,8 +46,12 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
       const userCredential = await createUserWithEmailAndPassword(auth, email, password);
       setUser(userCredential.user);
       return userCredential.user;
-    } catch (error) {
-      console.error("Error signing up:", error);
+    } catch (error: any) {
+      console.error("Error signing up with email:", error);
+      if (error.code && error.message) {
+        console.error("Firebase signup error code:", error.code);
+        console.error("Firebase signup error message:", error.message);
+      }
       return null;
     } finally {
       setLoading(false);
@@ -59,8 +64,12 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
       const userCredential = await signInWithEmailAndPassword(auth, email, password);
       setUser(userCredential.user);
       return userCredential.user;
-    } catch (error) {
-      console.error("Error signing in:", error);
+    } catch (error: any) {
+      console.error("Error signing in with email:", error);
+      if (error.code && error.message) {
+        console.error("Firebase email sign-in error code:", error.code);
+        console.error("Firebase email sign-in error message:", error.message);
+      }
       return null;
     } finally {
       setLoading(false);
@@ -74,8 +83,12 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
       const result = await signInWithPopup(auth, provider);
       setUser(result.user);
       return result.user;
-    } catch (error) {
+    } catch (error: any) {
       console.error("Error signing in with Google:", error);
+      if (error.code && error.message) {
+        console.error("Firebase Google sign-in error code:", error.code);
+        console.error("Firebase Google sign-in error message:", error.message);
+      }
       return null;
     } finally {
       setLoading(false);
@@ -108,3 +121,4 @@ export const useAuth = () => {
   }
   return context;
 };
+
