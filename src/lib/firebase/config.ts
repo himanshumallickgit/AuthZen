@@ -1,6 +1,6 @@
 
-import { initializeApp, getApps, getApp, FirebaseApp } from "firebase/app";
-import { getAuth, Auth } from "firebase/auth";
+import { initializeApp, getApps, getApp, type FirebaseApp } from "firebase/app";
+import { getAuth, type Auth } from "firebase/auth";
 
 // Log individual environment variables to help debug
 console.log("Attempting to load Firebase config from .env.local:");
@@ -42,7 +42,7 @@ if (
   authInstance = {} as Auth;
 } else {
   // This log will only appear if the basic check above passes.
-  console.log("Firebase API Key successfully loaded by the app:", firebaseConfig.apiKey);
+  // console.log("Firebase API Key successfully loaded by the app:", firebaseConfig.apiKey); // Removed this as individual logs are more direct
   if (!getApps().length) {
     app = initializeApp(firebaseConfig);
   } else {
@@ -51,5 +51,5 @@ if (
   authInstance = getAuth(app);
 }
 
-export { authInstance as auth }; // Exporting the potentially dummy authInstance
-export default app;
+export { authInstance as auth }; // Exporting the authInstance (real or dummy)
+export default app; // Exporting the app (real or dummy)
