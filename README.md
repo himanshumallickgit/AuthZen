@@ -1,7 +1,3 @@
-# Firebase Studio
-
-This is a NextJS starter in Firebase Studio.
-
 To get started, take a look at src/app/page.tsx.
 
 Core Framework: Next.js (specifically using the App Router for routing and Server Components/Client Components).
