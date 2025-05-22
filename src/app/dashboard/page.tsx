@@ -1,5 +1,7 @@
+
 "use client";
 
+import { useState, useEffect } from 'react';
 import { useAuth } from "@/contexts/AuthContext";
 import { useAuthRedirect } from "@/hooks/useAuthRedirect";
 import { SignOutButton } from "@/components/auth/SignOutButton";
@@ -11,6 +13,11 @@ import { siteConfig } from "@/config/site";
 export default function DashboardPage() {
   useAuthRedirect({ redirectTo: "/auth/login", condition: "unauthenticated" });
   const { user, loading } = useAuth();
+  const [currentYear, setCurrentYear] = useState<number | null>(null);
+
+  useEffect(() => {
+    setCurrentYear(new Date().getFullYear());
+  }, []);
 
   if (loading || !user) {
     return (
@@ -63,7 +70,7 @@ export default function DashboardPage() {
         </CardContent>
       </Card>
        <p className="mt-8 text-center text-sm text-muted-foreground">
-        &copy; {new Date().getFullYear()} {siteConfig.name}. Your secure session.
+        &copy; {currentYear || new Date().getFullYear()} {siteConfig.name}. Your secure session.
       </p>
     </div>
   );

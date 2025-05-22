@@ -1,4 +1,8 @@
+
+"use client";
+
 import type { ReactNode } from 'react';
+import { useState, useEffect } from 'react';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
 import { siteConfig } from '@/config/site';
 import { Sparkles } from 'lucide-react'; // Using Sparkles as a generic app icon
@@ -11,6 +15,12 @@ interface AuthFormWrapperProps {
 }
 
 export function AuthFormWrapper({ title, description, children, footerContent }: AuthFormWrapperProps) {
+  const [currentYear, setCurrentYear] = useState<number | null>(null);
+
+  useEffect(() => {
+    setCurrentYear(new Date().getFullYear());
+  }, []);
+
   return (
     <div className="flex min-h-screen flex-col items-center justify-center bg-background p-4">
       <Card className="w-full max-w-md shadow-xl">
@@ -31,7 +41,7 @@ export function AuthFormWrapper({ title, description, children, footerContent }:
         )}
       </Card>
        <p className="mt-8 text-center text-sm text-muted-foreground">
-        &copy; {new Date().getFullYear()} {siteConfig.name}. All rights reserved.
+        &copy; {currentYear || new Date().getFullYear()} {siteConfig.name}. All rights reserved.
       </p>
     </div>
   );
