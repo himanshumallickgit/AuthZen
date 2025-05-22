@@ -13,18 +13,16 @@ const firebaseConfig = {
 // Log the API key being used to help with debugging
 console.log("Firebase API Key being used by the app:", firebaseConfig.apiKey);
 
-// Validate that all config values are present
+// Validate that critical config values are present
 if (
-  !firebaseConfig.apiKey || firebaseConfig.apiKey === "YOUR_API_KEY" ||
-  !firebaseConfig.authDomain || firebaseConfig.authDomain === "YOUR_AUTH_DOMAIN" ||
-  !firebaseConfig.projectId || firebaseConfig.projectId === "YOUR_PROJECT_ID"
-  // Add checks for other essential fields if necessary, but these are critical.
-  // storageBucket, messagingSenderId, and appId might be optional for basic auth.
+  !firebaseConfig.apiKey ||
+  !firebaseConfig.authDomain ||
+  !firebaseConfig.projectId
 ) {
   console.error(
     "Firebase configuration is missing or incomplete. " +
-    "Please ensure all NEXT_PUBLIC_FIREBASE_ environment variables are set in your .env.local file. " +
-    "Refer to .env.local.example for the required variables."
+    "Please ensure all NEXT_PUBLIC_FIREBASE_ environment variables are set in your .env.local file with your actual Firebase project credentials. " +
+    "Refer to .env.local.example for the required variable names."
   );
 }
 
