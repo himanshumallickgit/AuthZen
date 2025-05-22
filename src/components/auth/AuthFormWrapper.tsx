@@ -6,6 +6,7 @@ import { useState, useEffect } from 'react';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
 import { siteConfig } from '@/config/site';
 import { Sparkles } from 'lucide-react'; // Using Sparkles as a generic app icon
+import { Skeleton } from "@/components/ui/skeleton";
 
 interface AuthFormWrapperProps {
   title: string;
@@ -41,7 +42,7 @@ export function AuthFormWrapper({ title, description, children, footerContent }:
         )}
       </Card>
        <p className="mt-8 text-center text-sm text-muted-foreground">
-        &copy; {currentYear || new Date().getFullYear()} {siteConfig.name}. All rights reserved.
+        &copy; {currentYear ? currentYear : <Skeleton className="inline-block h-4 w-12" />} {siteConfig.name}. All rights reserved.
       </p>
     </div>
   );

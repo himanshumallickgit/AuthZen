@@ -70,7 +70,7 @@ export default function DashboardPage() {
         </CardContent>
       </Card>
        <p className="mt-8 text-center text-sm text-muted-foreground">
-        &copy; {currentYear || new Date().getFullYear()} {siteConfig.name}. Your secure session.
+        &copy; {currentYear ? currentYear : <Skeleton className="inline-block h-4 w-12" />} {siteConfig.name}. Your secure session.
       </p>
     </div>
   );
