@@ -1,0 +1,39 @@
+
+# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
+
+# Node.js
+node_modules
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+package-lock.json # Often committed, but can be ignored if preferred by team
+pnpm-lock.yaml # If using pnpm
+
+# Next.js
+.next/
+out/
+build/
+
+# Environment variables
+.env*.local
+.env # Should not be committed if it contains secrets
+!.env.example # It's good to commit an example env file
+
+# Editor directories and files
+.vscode/*
+!.vscode/settings.json
+!.vscode/extensions.json
+.idea
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+
+# Operating System files
+.DS_Store
+Thumbs.db
+
+# Logs
+logs
+*.log
