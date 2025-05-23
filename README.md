@@ -16,3 +16,5 @@ State Management (for Auth): React Context API (used in AuthContext.tsx to manag
 Toasting/Notifications: The ShadCN Toaster component (which is built upon Radix UI's Toast component) for displaying success/error messages.
 Development Environment (implied): Firebase Studio (your current working environment).
 Generative AI (Setup): Genkit (with googleAI plugin for Gemini models) is configured in src/ai/genkit.ts, ready for you to implement AI-powered features.
+
+Demo Deployed: https://authhzen.vercel.app/auth/login
